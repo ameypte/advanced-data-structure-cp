@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Huffman File Encryption and Decryption</title>
+    <style>
+        body {
+          font-family: "Roboto", sans-serif;
+          /* Specify the path to your background image */
+          background-size: cover;
+          background-position: center;
+          padding: 20px;
+          margin: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+      
+        .container {
+          background-color: rgba(255, 255, 255, 0.8);
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          text-align: center;
+          max-width: 80%; /* Limit the container width */
+          overflow: hidden; /* Hide overflowing content */
+        }
+      
+        h2 {
+          color: #333;
+          font-weight: 700;
+          margin-bottom: 20px;
+        }
+      
+        input[type="file"] {
+          margin-bottom: 20px;
+          border: 1px solid rgb(51, 170, 255);
+          padding: 8px;
+          border-radius: 5px;
+          font-size: 16px;
+        }
+      
+        button {
+          background-color: #4c84af;
+          color: rgb(51, 255, 246);
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          font-size: 16px;
+        }
+      
+        button:hover {
+          background-color: #4583a0;
+        }
+      
+        /* Style for the content */
+        #encodedContent,
+        #decodedContent {
+          text-align: left; /* Align text to the left */
+          max-width: 100%; /* Limit the content width */
+          word-wrap: break-word; /* Allow long words to wrap */
+          overflow-wrap: break-word; /* Compatible with more browsers */
+          margin-bottom: 20px; /* Add some space between the content and the buttons */
+          margin-top: 10px;
+        }
+      </style>
+      
+  </head>
+  <body>
+    <div class="container">
+      <img src="../images/image.png" alt="images" width="150" />
+      <h2>Huffman File Encryption and Decryption</h2>
+      <input type="file" id="fileInput" />
+      <br />
+      <button onclick="handelSubmit(event)">Upload</button>
+      <div id="encodedContent"></div>
+      <div id="decodedContent"></div>
+    </div>
+
+    <script>
+      async function handelSubmit(event) {
+        event.preventDefault();
+
+        var fileInput = document.getElementById("fileInput");
+        var file = fileInput.files[0];
+
+        if (file) {
+          var formData = new FormData();
+          formData.append("file", file);
+
+          fetch("http://127.0.0.1:5000/upload", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((result) => {
+              // Update encoded and decoded content on the page
+              document.getElementById("encodedContent").innerHTML =
+                "<h3>Encoded Content:</h3><p>" + result.encoded + "</p>";
+              document.getElementById("decodedContent").innerHTML =
+                "<h3>Decoded Content:</h3><p>" + result.decoded + "</p>";
+              console.log("Success:", result);
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        } else {
+          alert("Please select a file first.");
+        }
+      }
+    </script>
+  </body>
+</html>
