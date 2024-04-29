@@ -20,8 +20,6 @@ def upload():
     with open("decoded.txt", "r") as f:
         decoded = f.read()
     return jsonify({"encoded": encoded, "decoded": decoded})
-    
-
 
 if __name__ == '__main__':
     app.run(debug=True)
