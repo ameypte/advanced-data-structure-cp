@@ -11,7 +11,6 @@ const add2 = [
   "What are the research facilities and opportunities available at VIT?",
   "How does the curriculum and teaching methodology at VIT compare to other top colleges?",
   "What are the scholarships and financial aid options available at VIT?",
-  "What are the scholarships and financial aid options available at VIT?",
   "How is the alumni network and support system at VIT?",
   "What are the extracurricular activities, clubs, and student organizations at VIT?",
   "How does VIT promote entrepreneurship and innovation among its students?",

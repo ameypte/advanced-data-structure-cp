@@ -49,6 +49,8 @@ const faqData = [
   "VIT consistently ranks among the top institutes in India in terms of campus placements and average salary packages offered to its graduates. The average salary packages offered to VIT graduates are highly competitive and comparable to those offered at other top engineering colleges in the country.",
 ];
 const search = (str, i, root) => {
+  const resultDiv = document.getElementById("result");
+  resultDiv.innerText = "";
   console.log(document.getElementById("list").innerText);
   if (
     document
