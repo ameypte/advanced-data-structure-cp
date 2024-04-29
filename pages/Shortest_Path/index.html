@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shortest Path Finder</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Custom styles */
+    #map-container {
+      text-align: center;
+      margin-top: 50px;
+    }
+    #map-image {
+      max-width: 100%;
+      max-height: 80vh;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .dropdown-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .dropdown {
+      margin-right: 10px;
+    }
+    #find-path-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+    #path-output {
+      text-align: center;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div id="map-container">
+          <img id="map-image" src="vit.jpg" alt="Map Image" class="img-fluid">
+          <div class="dropdown-container">
+            <select id="source-dropdown" class="form-control dropdown">
+              <!-- Options for source selection -->
+              <option value="MainGate">Main Gate</option>
+              <option value="InstruChem">Instru/Chem</option>
+              <option value="Minus2">Minus 2</option>
+              <option value="BoatClub">Boat Club</option>
+              <option value="MainBuilding">Main Building</option>
+              <option value="Audi">Auditorium</option>
+              <option value="FruitCanteen">Fruit Canteen</option>  
+              <option value="MechAids">MECH/AIDS</option>
+              <option value="Library">Library</option>
+              <option value="VitCanteen">Vit Canteen</option>
+              <!-- Add more options as needed -->
+            </select>
+            <br><br>
+            <select id="destination-dropdown" class="form-control dropdown">
+              <!-- Options for destination selection -->
+              <option value="MainGate">Main Gate</option>
+              <option value="InstruChem">Instru/Chem</option>
+              <option value="Minus2">Minus 2</option>
+              <option value="BoatClub">Boat Club</option>
+              <option value="MainBuilding">Main Building</option>
+              <option value="Audi">Auditorium</option>
+              <option value="FruitCanteen">Fruit Canteen</option>  
+              <option value="MechAids">MECH/AIDS</option>
+              <option value="Library">Library</option>
+              <option value="VitCanteen">Vit Canteen</option>
+              <!-- Add more options as needed -->
+            </select>
+            <br><br>
+            <button id="find-path-btn" class="btn btn-primary">Find Path</button>
+          </div>
+          <div id="path-output"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and jQuery (optional) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    // JavaScript code for path finding goes here
+    // Sample distances between locations
+    const graph = {
+      "MainGate": { "InstruChem": 100, "Minus2": 300 },
+      "InstruChem": { "MainGate": 100, "Minus2": 250, "BoatClub": 100, "VitCanteen": 300 },
+      "Minus2": { "MainGate": 300, "InstruChem": 250, "BoatClub": 50, "MainBuilding": 100 },
+      "BoatClub": { "Minus2": 50, "InstruChem": 100, "MainBuilding": 70, "MechAids": 100 },
+      "MainBuilding": { "Minus2": 100, "BoatClub": 70, "Audi": 50, "MechAids": 200 },
+      "MechAids": { "BoatClub": 100, "MainBuilding": 200, "Library": 80, "FruitCanteen": 150 },
+      "Library": { "MechAids": 80, "VitCanteen": 300 },
+      "VitCanteen": { "InstruChem": 300, "Library": 300 },
+      "Audi": { "MainBuilding": 50, "FruitCanteen": 100, "MechAids": 300 },
+      "FruitCanteen": { "Audi": 100, "MechAids": 150 }
+    };-
+
+    // Dijkstra's algorithm function
+    function dijkstra(source, destination) {
+      // Initialize distances array to store shortest distances
+      const distances = {};
+
+      // Initialize priority queue for nodes to visit
+      const priorityQueue = new Map();
+
+      // Initialize previous node array to store path
+      const previous = {};
+
+      // Initialize shortest path to destination
+      let shortestPath = [];
+
+      // Initialize other variables
+      let node;
+      let alt;
+
+      // Initialize distances to Infinity and add source to priority queue
+      for (node in graph) {
+        if (node === source) {
+          distances[node] = 0;
+          priorityQueue.set(node, 0);
+        } else {
+          distances[node] = Infinity;
+          priorityQueue.set(node, Infinity);
+        }
+        previous[node] = null;
+      }
+
+      // Dijkstra's algorithm
+      while (priorityQueue.size > 0) {
+        node = Array.from(priorityQueue.keys()).reduce((a, b) => priorityQueue.get(a) < priorityQueue.get(b) ? a : b);
+
+        if (node === destination) {
+          shortestPath = [];
+
+          while (previous[node]) {
+            shortestPath.push(node);
+            node = previous[node];
+          }
+
+          break;
+        }
+
+        priorityQueue.delete(node);
+
+        for (let neighbor in graph[node]) {
+          alt = distances[node] + graph[node][neighbor];
+          if (alt < distances[neighbor]) {
+            distances[neighbor] = alt;
+            previous[neighbor] = node;
+            priorityQueue.set(neighbor, alt);
+          }
+        }
+      }
+
+     // Calculate total distance of the shortest path
+      let totalDistance = 0;
+      for (let i = 1; i < shortestPath.length; i++) {
+        totalDistance += graph[shortestPath[i - 1]][shortestPath[i]];
+      }
+      // Add the last leg of the journey
+      if (shortestPath.length > 0) {
+        totalDistance += graph[shortestPath[shortestPath.length - 1]][source];
+      }
+
+
+      // Return both the shortest path and its total distance
+      return { path: shortestPath.concat(source).reverse(), distance: totalDistance };
+    }
+
+    document.getElementById('find-path-btn').addEventListener('click', function() {
+      // Get selected source and destination values
+      var source = document.getElementById('source-dropdown').value;
+      var destination = document.getElementById('destination-dropdown').value;
+
+      // Find shortest path using Dijkstra's algorithm
+      const result = dijkstra(source, destination);
+
+      // Display the shortest path in the path-output div
+      var pathOutput = document.getElementById('path-output');
+      pathOutput.innerHTML = `Shortest path from ${source} to ${destination}: ${result.path.join(' -> ')} (Distance: ${result.distance} meters)`;
+    });
+  </script>
+</body>
+</html>
+
