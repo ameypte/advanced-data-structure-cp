@@ -1,11 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulation Page</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .card {
+      width: 100%;
+      margin-bottom: 20px;
+      border: 1px solid #ddd; /* Add a border */
+      border-radius: 10px; /* Rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a shadow */
+      transition: box-shadow 0.3s ease; /* Smooth transition for hover effect */
+    }
+    .card:hover {
+      box-shadow: 8px 16px 32px rgba(0, 0, 0, 0.3); /* Hover effect */
+    }
+    .card-img-top {
+      height: 200px; /* Set the height of the image */
+      object-fit: cover; /* Ensure the image covers the entire space */
+      border-top-left-radius: 10px; /* Rounded corners for top left */
+      border-top-right-radius: 10px; /* Rounded corners for top right */
+    }
+    .card-body {
+      padding: 20px; /* Add padding to the card body */
+    }
+    .card-title {
+      font-size: 1.2rem; /* Increase font size for title */
+      font-weight: bold; /* Make title bold */
+    }
+    .card-text {
+      color: #555; /* Change text color */
+    }
+    .btn-primary {
+      background-color: #007bff; /* Change primary button color */
+      border-color: #007bff; /* Change primary button border color */
+    }
+    .btn-primary:hover {
+      background-color: #0056b3; /* Change primary button hover color */
+      border-color: #0056b3; /* Change primary button hover border color */
+    }
+  </style>
 </head>
 <body>
-    <a href="./pages/huffman.html">Huffman</a>
+  <div class="container">
+    <h1 class="mt-5 mb-4 text-center">Simulator Hub</h1>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card">
+          <img src="images/lift.png" class="card-img-top" alt="Lift Simulator">
+          <div class="card-body">
+            <h5 class="card-title">Lift Simulator</h5>
+            <p class="card-text">Lift Simulator is a module to demonstrate the working of a lift. It Shows how the lifts are managed in multiple floors.</p>
+            <a href="Pages/Lift_simulator" class="btn btn-primary">Simulate</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <img src="images/sp.webp" class="card-img-top" alt="Shortest Path Finder">
+          <div class="card-body">
+            <h5 class="card-title">Shortest Path Finder</h5>
+            <p class="card-text">Shortest Path Finder uses the Djkstras algorithm to find the shortest path between the two buildings of our college.</p>
+            <a href="Pages/Shortest_Path" class="btn btn-primary">Simulate</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <img src="images/autoc.webp" class="card-img-top" alt="Autocomplete">
+          <div class="card-body">
+            <h5 class="card-title">Autocomplete</h5>
+            <p class="card-text">Autocomplete textfield provides the feature to give autocomplete suggestion while typing.</p>
+            <a href="Pages/autocomplete/" class="btn btn-primary">Simulate</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <img src="images/huffman.jpg" class="card-img-top" alt="Huffman Encoder">
+          <div class="card-body">
+            <h5 class="card-title">Huffman Encoder</h5>
+            <p class="card-text">Huffman encoder simulates the Huffman encoding and decoding for a particular text file.</p>
+            <a href="Pages/huffman.html" class="btn btn-primary">Simulate</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
