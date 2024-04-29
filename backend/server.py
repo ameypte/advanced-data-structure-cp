@@ -14,7 +14,7 @@ def upload():
     f = request.files['file']
     f.save("msg.txt")
     subprocess.run(["gcc", "huffman.c"])
-    subprocess.run(["./a.out", "msg.txt"])
+    subprocess.run(["./a.exe", "msg.txt"])
     with open("encoded.txt", "r") as f:
         encoded = f.read()
     with open("decoded.txt", "r") as f:
