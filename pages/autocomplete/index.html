@@ -104,7 +104,10 @@
           border: none;
         "
       >
-        <nav class="navbar navbar-default">
+        <nav
+          class="navbar navbar-default"
+          style="width: 70vw; display: flex; justify-content: center"
+        >
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
             <div class="logoArea">
@@ -201,32 +204,86 @@
       </div>
     </header>
     <h1>FAQ about College</h1>
-    <div class="search-container">
-      <input id="text-box" type="text" placeholder="Search..." />
+    <div class="search-container" style="margin-top: 2rem">
+      <input
+        id="text-box"
+        type="text"
+        placeholder="Search..."
+        style="width: 80vw"
+      />
       <button id="search-button">Search</button>
     </div>
     <ul id="list"></ul>
     <div id="result"></div>
     <script>
-      const searchButton = document.getElementById("search-button");
       const resultDiv = document.getElementById("result");
+
+      // const text_box = document.getElementById("text-box");
+      // const list = document.getElementById("list");
+
+      // if (text_box.value == "") {
+      //   list.innerHTML = "";
+      // }
+      // console.log(ocument.getElementById("text-box").value )
+      // if (document.getElementById("text-box").value == "") {
+      //   resultDiv.innerHTML = ``;
+      // }
+      const searchButton = document.getElementById("search-button");
+      // const list = document.getElementById("list");
 
       searchButton.addEventListener("click", () => {
         const searchTerm = document.getElementById("text-box").value;
         const content = getFAQContent(searchTerm);
         resultDiv.textContent = content;
+        document.getElementById("list").innerHTML = ``;
+        // list.innerHTML = "";
       });
 
       function getFAQContent(searchTerm) {
+        console.log(searchTerm);
         const faqData = {
           "is vit the best college in world":
-            "The tuition fee for the current academic year is $25,000.",
-          dorms:
-            "Our college offers on-campus housing in various dorms with amenities like laundry facilities, study rooms, and recreational areas.",
-          majors:
-            "We offer a wide range of majors, including Computer Science, Business Administration, Psychology, and many more. Check our website for the complete list.",
-        };
+            "VIT (Vishwakarma Institute of Technology) is consistently ranked among the top engineering colleges in India, but it may not be considered the best college in the world. It has an excellent reputation for its academic programs, research facilities, and industry collaborations. However, there are many other prestigious universities and colleges globally that rank higher in various international rankings.",
 
+          "how does vit rank among other engineering colleges in india?":
+            "VIT is typically ranked among the top 10-15 engineering colleges in India by various national ranking agencies and surveys. In the NIRF (National Institutional Ranking Framework) rankings for 2022, VIT was ranked 10th among engineering institutes in India.",
+
+          "is vit accredited and recognized by reputable academic bodies?":
+            "Yes, VIT is accredited by the National Assessment and Accreditation Council (NAAC) with an 'A++' grade, which is the highest accreditation awarded by NAAC. It is also recognized by the University Grants Commission (UGC) and is an autonomous institute affiliated with Savitribai Phule Pune University.",
+
+          "what are the placement statistics and top recruiters at vit?":
+            "VIT has an impressive placement record, with over 90% of eligible students getting placed in reputable companies every year. Some of the top recruiters at VIT include companies like Amazon, Microsoft, Google, Intel, Samsung, and many others from various sectors.",
+
+          "what is the admission process and eligibility criteria for vit?":
+            "Admission to VIT is based on performance in national-level engineering entrance exams like JEE Main and VITEEE (VIT Engineering Entrance Exam). The eligibility criteria include meeting the minimum cut-off scores in these exams and fulfilling the required academic qualifications (typically 12th standard or equivalent).",
+
+          "how is the campus life and infrastructure at vit?":
+            "VIT has a sprawling, well-developed campus with modern infrastructure and facilities. It offers excellent academic resources, state-of-the-art laboratories, libraries, sports facilities, and amenities for a well-rounded student experience. The campus is known for its vibrant and active student community.",
+
+          "what are the research facilities and opportunities available at vit":
+            "VIT has several research centers and laboratories focused on various fields, including engineering, science, management, and humanities. It encourages student research and provides opportunities for students to work on research projects with faculty members and industry partners.",
+
+          "how does the curriculum and teaching methodology at vit compare to other top colleges?":
+            "VIT follows a well-structured and industry-relevant curriculum that incorporates theoretical knowledge, practical skills, and project-based learning. The teaching methodology emphasizes interactive learning, case studies, and real-world applications, making it comparable to other top engineering colleges in India Copy",
+
+          "what are the scholarships and financial aid options available at vit?":
+            "VIT offers various scholarships and financial aid options to support deserving students. These include merit-based scholarships, need-based scholarships, and educational loans facilitated through tie-ups with banks. The institute also provides fee waivers and concessions for economically disadvantaged students.",
+
+          "how is the alumni network and support system at vit?":
+            "VIT has a strong and active alumni network with chapters across India and globally. The alumni association organizes various events, mentorship programs, and career support initiatives for current students and alumni. The institute also has dedicated placement and career development cells to assist students with their professional aspirations.",
+
+          "what are the extracurricular activities, clubs, and student organizations at vit?":
+            "VIT has a vibrant student community with numerous clubs, organizations, and societies catering to diverse interests such as sports, cultural activities, technical clubs, entrepreneurship cells, and more. Students have ample opportunities to participate in extracurricular activities and develop their skills and interests beyond academics.",
+
+          "how does vit promote entrepreneurship and innovation among its students?":
+            "VIT has a strong focus on promoting entrepreneurship and innovation. It has dedicated centers and incubation facilities to support student startups and entrepreneurial ventures. The institute organizes various entrepreneurship development programs, workshops, and competitions to encourage an entrepreneurial mindset among students.",
+
+          "what is the diversity and international student community like at vit?":
+            "VIT has a diverse and inclusive student community, with students from various states and countries studying on its campuses. The institute actively promotes international collaborations and attracts students from across the globe, creating a multicultural environment for learning and personal growth.",
+
+          "how does vit rank in terms of campus placements and average salary packages?":
+            "VIT consistently ranks among the top institutes in India in terms of campus placements and average salary packages offered to its graduates. The average salary packages offered to VIT graduates are highly competitive and comparable to those offered at other top engineering colleges in the country.",
+        };
         return (
           faqData[searchTerm.toLowerCase()] ||
           "No content found for the given search term."

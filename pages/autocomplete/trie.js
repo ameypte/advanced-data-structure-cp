@@ -1,5 +1,6 @@
 const text_box = document.getElementById("text-box");
 const list = document.getElementById("list");
+// const resultDiv = document.getElementById("result");
 const add2 = [
   "Is VIT the Best College in World",
   "How does VIT rank among other engineering colleges in India?",
