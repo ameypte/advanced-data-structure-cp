@@ -1,5 +1,6 @@
 const text_box = document.getElementById("text-box");
 const list = document.getElementById("list");
+// const resultDiv = document.getElementById("result");
 const add2 = [
   "Is VIT the Best College in World",
   "How does VIT rank among other engineering colleges in India?",
@@ -9,7 +10,6 @@ const add2 = [
   "How is the campus life and infrastructure at VIT?",
   "What are the research facilities and opportunities available at VIT?",
   "How does the curriculum and teaching methodology at VIT compare to other top colleges?",
-  "What are the scholarships and financial aid options available at VIT?",
   "What are the scholarships and financial aid options available at VIT?",
   "How is the alumni network and support system at VIT?",
   "What are the extracurricular activities, clubs, and student organizations at VIT?",
